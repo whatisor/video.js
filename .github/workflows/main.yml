@@ -1,0 +1,16 @@
+name: Check Secret
+
+on: [push]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check secret
+        run: |
+          if [[ -z "${{ secrets.TEST }}" ]]; then
+            echo "Secret is not set."
+            exit 1
+          else
+            echo "Secret is set {{ secrets.TEST }}"
+          fi
